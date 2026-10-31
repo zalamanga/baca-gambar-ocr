@@ -2,7 +2,7 @@
 
 Ambil teks cetak dari foto atau screenshot langsung di browser, lalu perbaiki, salin, atau unduh hasilnya sebagai `.txt`. Pilih bahasa Indonesia, Inggris, atau keduanya. Aplikasi memakai Tesseract.js dan WebAssembly, tanpa akun dan tanpa server OCR.
 
-[Buka aplikasi](https://zalamanga.github.io/baca-gambar-ocr/) · [Source GitHub](https://github.com/zalamanga/baca-gambar-ocr)
+[Buka aplikasi](https://zalamanga.github.io/baca-gambar-ocr/) Â· [Source GitHub](https://github.com/zalamanga/baca-gambar-ocr)
 
 ## Tampilan aplikasi
 
@@ -74,7 +74,7 @@ npm run test:browser
 
 Instalasi Chromium hanya diperlukan untuk pengujian browser dan memerlukan unduhan pertama. Gunakan versi dependensi yang dipatok pada [package-lock.json](package-lock.json).
 
-**Verifikasi lokal: PASS.** Sebanyak 41 tes unit dan 13 tes browser lulus. Suite browser menjalankan 10 proses OCR nyata pada tujuh fixture, mencakup PNG/JPEG/WEBP, transparansi, EXIF, rotasi, dan gambar kosong. Pengujian juga mencakup salin/unduh hasil edit, pembatalan, pergantian gambar, paste/drop, kegagalan worker, keyboard, serta dua tema. [Ringkasan browser](docs/evidence/windows-browser-summary.json) menyimpan hasil sebenarnya; satu kegagalan request worker sengaja diinjeksi untuk memeriksa recovery.
+**Verifikasi lokal dan CI: PASS.** [Run CI yang lulus](https://github.com/zalamanga/baca-gambar-ocr/actions/runs/41216943718) menjalankan source `cbb3cddedea71f19b35dbc73d87c00d747a07a78` pada Linux.  Sebanyak 41 tes unit dan 13 tes browser lulus. Suite browser menjalankan 10 proses OCR nyata pada tujuh fixture, mencakup PNG/JPEG/WEBP, transparansi, EXIF, rotasi, dan gambar kosong. Pengujian juga mencakup salin/unduh hasil edit, pembatalan, pergantian gambar, paste/drop, kegagalan worker, keyboard, serta dua tema. [Ringkasan browser](docs/evidence/windows-browser-summary.json) menyimpan hasil sebenarnya; satu kegagalan request worker sengaja diinjeksi untuk memeriksa recovery.
 
 [Workflow Pages](.github/workflows/pages.yml) menjalankan instalasi terkunci, tes unit, build, dan tes browser dengan OCR nyata. Hanya build yang lolos seluruh tahap dapat diunggah untuk deployment dari branch utama. Artifact pemeriksaan menyimpan log, hasil browser, manifest aset, dan tangkapan layar dari run yang berhasil.
 
