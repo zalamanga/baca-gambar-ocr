@@ -202,8 +202,8 @@
       "expectedText": "",
       "requiredFragments": [],
       "rejectCode": "unsupported-type",
-      "bytes": 102,
-      "sha256": "5b5ae98f2a1fadc79b44587cab2f6117ee36e72bd4a33c2af4426f7121a2f191"
+      "bytes": 101,
+      "sha256": "8b2f9951c70422c23ed972a53194308af4cb94153f18073a726633d4ee5589dd"
     }
   ]
 }

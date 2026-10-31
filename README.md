@@ -2,6 +2,8 @@
 
 Ambil teks cetak dari foto atau screenshot langsung di browser, lalu perbaiki, salin, atau unduh hasilnya sebagai `.txt`. Pilih bahasa Indonesia, Inggris, atau keduanya. Aplikasi memakai Tesseract.js dan WebAssembly, tanpa akun dan tanpa server OCR.
 
+[Buka aplikasi](https://zalamanga.github.io/baca-gambar-ocr/) · [Source GitHub](https://github.com/zalamanga/baca-gambar-ocr)
+
 ## Tampilan aplikasi
 
 Gambar di bawah diambil dari aplikasi yang benar-benar membaca fixture sintetis. Teks pada editor adalah keluaran OCR sebelum pengeditan.

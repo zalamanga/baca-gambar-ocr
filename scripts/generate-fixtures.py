@@ -165,7 +165,7 @@ def main() -> None:
 
     (output / "unsupported.svg").write_text(
         '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="50"><text x="5" y="25">TEST</text></svg>\n',
-        encoding="utf-8")
+        encoding="utf-8", newline="\n")
     record("unsupported-svg", "unsupported.svg", "image/svg+xml", None, valid=False,
            rejectCode="unsupported-type")
 
@@ -179,7 +179,7 @@ def main() -> None:
         "reproduction": "Committed images are fixed fixtures. Regeneration needs Pillow and the same font files/versions for identical rendering; fonts are not redistributed.",
         "cases": cases,
     }
-    (output / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (output / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(f"Generated {len(cases)} synthetic fixtures in {output}")
 
 
