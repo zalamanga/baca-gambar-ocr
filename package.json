@@ -1,0 +1,27 @@
+{
+  "name": "baca-gambar-ocr",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Ambil teks Indonesia dan Inggris dari gambar, langsung di browser.",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "prepare:assets": "node scripts/prepare-assets.mjs",
+    "dev": "npm run prepare:assets && vite --host 127.0.0.1 --port 8124 --strictPort",
+    "build": "npm run prepare:assets && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 8124 --strictPort",
+    "test": "node --test tests/*.test.js",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "@tesseract.js-data/eng": "1.0.0",
+    "@tesseract.js-data/ind": "1.0.0",
+    "tesseract.js": "7.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "vite": "8.3.5"
+  }
+}

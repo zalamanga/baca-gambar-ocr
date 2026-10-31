@@ -1,0 +1,145 @@
+{
+  "result": "PASS",
+  "cases": [
+    {
+      "theme": "light",
+      "width": 320,
+      "zoom": 1,
+      "scroll": 320,
+      "offenders": []
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "zoom": 2,
+      "scroll": 320,
+      "offenders": []
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "zoom": 1,
+      "scroll": 390,
+      "offenders": []
+    },
+    {
+      "theme": "light",
+      "width": 600,
+      "zoom": 1,
+      "scroll": 600,
+      "offenders": []
+    },
+    {
+      "theme": "light",
+      "width": 768,
+      "zoom": 1,
+      "scroll": 768,
+      "offenders": []
+    },
+    {
+      "theme": "light",
+      "width": 768,
+      "zoom": 2,
+      "scroll": 768,
+      "offenders": []
+    },
+    {
+      "theme": "light",
+      "width": 1000,
+      "zoom": 1,
+      "scroll": 1000,
+      "offenders": []
+    },
+    {
+      "theme": "light",
+      "width": 1024,
+      "zoom": 1,
+      "scroll": 1024,
+      "offenders": []
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "zoom": 1,
+      "scroll": 1440,
+      "offenders": []
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "zoom": 2,
+      "scroll": 1440,
+      "offenders": []
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "zoom": 1,
+      "scroll": 320,
+      "offenders": []
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "zoom": 2,
+      "scroll": 320,
+      "offenders": []
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "zoom": 1,
+      "scroll": 390,
+      "offenders": []
+    },
+    {
+      "theme": "dark",
+      "width": 600,
+      "zoom": 1,
+      "scroll": 600,
+      "offenders": []
+    },
+    {
+      "theme": "dark",
+      "width": 768,
+      "zoom": 1,
+      "scroll": 768,
+      "offenders": []
+    },
+    {
+      "theme": "dark",
+      "width": 768,
+      "zoom": 2,
+      "scroll": 768,
+      "offenders": []
+    },
+    {
+      "theme": "dark",
+      "width": 1000,
+      "zoom": 1,
+      "scroll": 1000,
+      "offenders": []
+    },
+    {
+      "theme": "dark",
+      "width": 1024,
+      "zoom": 1,
+      "scroll": 1024,
+      "offenders": []
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "zoom": 1,
+      "scroll": 1440,
+      "offenders": []
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "zoom": 2,
+      "scroll": 1440,
+      "offenders": []
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "schema": 1,
+  "description": "Synthetic, non-sensitive OCR fixtures rendered from text with standard fonts. No uploaded personal documents are used.",
+  "generator": "scripts/generate-fixtures.py",
+  "pillowVersion": "11.0.0",
+  "fonts": [
+    {
+      "file": "arial.ttf",
+      "sha256": "c9b76220a5be42ead4733611e417cd65c5fd8aeaa33eb56576ac378a37d130a1"
+    },
+    {
+      "file": "arialbd.ttf",
+      "sha256": "766f06ac8761f82f25d032a220e89438f6064591af9915061f20b949efdedf69"
+    }
+  ],
+  "assertion": "Normalize recognized text to lowercase and collapse whitespace before checking requiredFragments. These fragments are test expectations, never recognition output.",
+  "reproduction": "Committed images are fixed fixtures. Regeneration needs Pillow and the same font files/versions for identical rendering; fonts are not redistributed.",
+  "cases": [
+    {
+      "id": "indonesian-receipt",
+      "file": "indonesian-receipt.png",
+      "mime": "image/png",
+      "valid": true,
+      "expectedText": "TOKO KERTAS MEJA\nNOTA PEMBELIAN\n31 OKTOBER 2026\nNomor: OCR-1042\nBUKU TULIS 2 x Rp8.000\nPULPEN BIRU 1 x Rp4.000\nTOTAL Rp20.000\nPembayaran: TUNAI\nTerima kasih.",
+      "requiredFragments": [
+        "toko kertas meja",
+        "nota pembelian",
+        "ocr-1042",
+        "buku tulis",
+        "pulpen biru",
+        "20.000",
+        "terima kasih"
+      ],
+      "language": "ind",
+      "width": 850,
+      "height": 1000,
+      "bytes": 44892,
+      "sha256": "5bbe8b4bb0595393827e00bef49e657c1e97a623b52f770f54e559558ac800d0"
+    },
+    {
+      "id": "indonesian-sideways",
+      "file": "indonesian-receipt-sideways.png",
+      "mime": "image/png",
+      "valid": true,
+      "expectedText": "TOKO KERTAS MEJA\nNOTA PEMBELIAN\n31 OKTOBER 2026\nNomor: OCR-1042\nBUKU TULIS 2 x Rp8.000\nPULPEN BIRU 1 x Rp4.000\nTOTAL Rp20.000\nPembayaran: TUNAI\nTerima kasih.",
+      "requiredFragments": [
+        "toko kertas meja",
+        "nota pembelian",
+        "ocr-1042",
+        "buku tulis",
+        "pulpen biru",
+        "20.000",
+        "terima kasih"
+      ],
+      "language": "ind",
+      "rotationToUpright": 90,
+      "width": 1000,
+      "height": 850,
+      "bytes": 56690,
+      "sha256": "24cd795c095e2e338522a474e3bb335f63457f1b26d5edbeb8dda0492f1756cb"
+    },
+    {
+      "id": "english-jpeg",
+      "file": "english-note.jpg",
+      "mime": "image/jpeg",
+      "valid": true,
+      "expectedText": "PROJECT MEETING NOTES\nDate: 31 October 2026\nThe inventory API is ready for review.\nAdd a health check before deployment.\nKeep a backup before moving files.\nNext review: Monday at 09:30.",
+      "requiredFragments": [
+        "project meeting notes",
+        "31 october 2026",
+        "inventory api",
+        "health check",
+        "backup",
+        "09:30"
+      ],
+      "language": "eng",
+      "width": 1200,
+      "height": 820,
+      "bytes": 91975,
+      "sha256": "8ca8272306d1f095b0b9651f7cddc7fab3bde8c4808ff62221032c8f082fcedf"
+    },
+    {
+      "id": "english-webp",
+      "file": "english-note.webp",
+      "mime": "image/webp",
+      "valid": true,
+      "expectedText": "PROJECT MEETING NOTES\nDate: 31 October 2026\nThe inventory API is ready for review.\nAdd a health check before deployment.\nKeep a backup before moving files.\nNext review: Monday at 09:30.",
+      "requiredFragments": [
+        "project meeting notes",
+        "31 october 2026",
+        "inventory api",
+        "health check",
+        "backup",
+        "09:30"
+      ],
+      "language": "eng",
+      "width": 1200,
+      "height": 820,
+      "bytes": 12432,
+      "sha256": "473a9b1e9f4cbbfece9004e8087e7f80e2e24fd1d3eeac8ccec494487cf30a99"
+    },
+    {
+      "id": "english-transparent",
+      "file": "english-note-transparent.png",
+      "mime": "image/png",
+      "valid": true,
+      "expectedText": "PROJECT MEETING NOTES\nDate: 31 October 2026\nThe inventory API is ready for review.\nAdd a health check before deployment.\nKeep a backup before moving files.\nNext review: Monday at 09:30.",
+      "requiredFragments": [
+        "project meeting notes",
+        "31 october 2026",
+        "inventory api",
+        "health check",
+        "backup",
+        "09:30"
+      ],
+      "language": "eng",
+      "requiresWhiteFlatten": true,
+      "width": 1200,
+      "height": 820,
+      "bytes": 41825,
+      "sha256": "b04c1af7757cec6e3dc7540cb972b6d5b5b4ebac5b960c0ca36379640c357084"
+    },
+    {
+      "id": "english-exif",
+      "file": "english-note-exif.jpg",
+      "mime": "image/jpeg",
+      "valid": true,
+      "expectedText": "PROJECT MEETING NOTES\nDate: 31 October 2026\nThe inventory API is ready for review.\nAdd a health check before deployment.\nKeep a backup before moving files.\nNext review: Monday at 09:30.",
+      "requiredFragments": [
+        "project meeting notes",
+        "31 october 2026",
+        "inventory api",
+        "health check",
+        "backup",
+        "09:30"
+      ],
+      "language": "eng",
+      "exifOrientation": 6,
+      "displayWidth": 1200,
+      "displayHeight": 820,
+      "width": 820,
+      "height": 1200,
+      "bytes": 92466,
+      "sha256": "c990ed72c64b77fae96bc6cb5531d414ec6eee198ecc2e1743fdc9e586fedee9"
+    },
+    {
+      "id": "blank",
+      "file": "blank.png",
+      "mime": "image/png",
+      "valid": true,
+      "expectedText": "",
+      "requiredFragments": [],
+      "expectEmpty": true,
+      "width": 800,
+      "height": 600,
+      "bytes": 2309,
+      "sha256": "860084b16c20751e2b0884a2540f3235eb79533fa9fefc4de0c58434d6021429"
+    },
+    {
+      "id": "corrupt",
+      "file": "corrupt.png",
+      "mime": "image/png",
+      "valid": false,
+      "expectedText": "",
+      "requiredFragments": [],
+      "rejectCode": "invalid-image",
+      "bytes": 26,
+      "sha256": "d4ea89f92570e50fbc64f23b761ea1b5a29646e246689d22de4e6e9a09e64dce"
+    },
+    {
+      "id": "huge-header",
+      "file": "huge-header.png",
+      "mime": "image/png",
+      "valid": false,
+      "expectedText": "",
+      "requiredFragments": [],
+      "width": 100000,
+      "height": 100000,
+      "rejectCode": "dimensions-too-large",
+      "note": "Header-only invalid PNG. No large pixel buffer is allocated during generation.",
+      "bytes": 45,
+      "sha256": "c0c9273e7eb56ec7db3669e2f894a31811a98bea731842465a5967d0ee5e3f62"
+    },
+    {
+      "id": "animated-webp",
+      "file": "animated.webp",
+      "mime": "image/webp",
+      "valid": false,
+      "expectedText": "",
+      "requiredFragments": [],
+      "rejectCode": "animated-image",
+      "width": 32,
+      "height": 32,
+      "bytes": 140,
+      "sha256": "aa562436b7c63f77ef54e527c9d3efb80c78ac17eb2b13f837e15f3b0692e2da"
+    },
+    {
+      "id": "unsupported-svg",
+      "file": "unsupported.svg",
+      "mime": "image/svg+xml",
+      "valid": false,
+      "expectedText": "",
+      "requiredFragments": [],
+      "rejectCode": "unsupported-type",
+      "bytes": 102,
+      "sha256": "5b5ae98f2a1fadc79b44587cab2f6117ee36e72bd4a33c2af4426f7121a2f191"
+    }
+  ]
+}

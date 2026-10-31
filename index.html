@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="id" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Ambil teks Indonesia dan Inggris dari gambar langsung di browser. Edit, salin, dan unduh hasilnya."
+    />
+    <meta name="referrer" content="no-referrer" />
+    <title>BacaGambar | Gambar menjadi teks</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <a class="skip-link" href="#output">Langsung ke hasil teks</a>
+    <div class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="app-name">BacaGambar</p>
+          <h1>Ambil teks dari gambar.</h1>
+          <p class="intro">
+            Pilih foto atau screenshot, lalu salin tulisan di dalamnya.
+          </p>
+        </div>
+        <button type="button" id="themeButton" class="quiet-button">
+          Mode gelap
+        </button>
+      </header>
+
+      <main class="workspace" aria-label="Meja kerja OCR">
+        <section class="panel source-panel" aria-labelledby="sourceHeading">
+          <div class="panel-heading">
+            <h2 id="sourceHeading">
+              <span class="step">1</span> Gambar sumber
+            </h2>
+            <button type="button" id="resetButton" class="text-button" disabled>
+              Reset
+            </button>
+          </div>
+          <input
+            id="imageInput"
+            type="file"
+            accept="image/png,image/jpeg,image/webp"
+            aria-label="Pilih gambar PNG, JPG, atau WEBP"
+            hidden
+          />
+          <div id="dropzone" class="dropzone">
+            <div id="emptyPreview" class="empty-preview">
+              <p class="drop-title">Mulai dari satu gambar.</p>
+              <p>PNG, JPG, atau WEBP. Maksimal 10 MiB.</p>
+              <button type="button" id="pickButton" class="primary-button">
+                Pilih gambar
+              </button>
+              <p class="paste-hint">
+                Bisa juga tarik gambar ke sini atau tempel screenshot dengan
+                Ctrl+V.
+              </p>
+              <button type="button" id="exampleButton" class="text-button">
+                Coba contoh nota
+              </button>
+            </div>
+            <div id="previewWrap" class="preview-wrap" hidden>
+              <div
+                id="canvasHost"
+                class="preview-surface"
+                aria-label="Pratinjau gambar"
+              ></div>
+              <div class="file-info">
+                <div class="file-description">
+                  <strong id="fileName"></strong>
+                  <p id="imageDetails"></p>
+                </div>
+                <button type="button" id="replaceButton" class="quiet-button">
+                  Ganti gambar
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="rotation-row" aria-label="Rotasi gambar">
+            <button type="button" id="rotateLeft" class="quiet-button" disabled>
+              Putar kiri
+            </button>
+            <output id="rotationValue" aria-label="Sudut rotasi">0°</output>
+            <button
+              type="button"
+              id="rotateRight"
+              class="quiet-button"
+              disabled
+            >
+              Putar kanan
+            </button>
+          </div>
+          <div class="read-settings">
+            <div class="field">
+              <label for="language">Bahasa pada gambar</label
+              ><select id="language">
+                <option value="ind+eng">Indonesia + Inggris</option>
+                <option value="ind">Indonesia</option>
+                <option value="eng">Inggris</option>
+              </select>
+            </div>
+            <button
+              type="button"
+              id="readButton"
+              class="primary-button"
+              disabled
+            >
+              Ambil teks
+            </button>
+            <button type="button" id="cancelButton" class="quiet-button" hidden>
+              Batalkan
+            </button>
+          </div>
+          <div id="progressWrap" class="progress-wrap" hidden>
+            <div class="progress-caption">
+              <span id="stageText">Menyiapkan pembacaan</span
+              ><output id="progressNumber"></output>
+            </div>
+            <progress
+              id="ocrProgress"
+              max="1"
+              aria-labelledby="stageText"
+            ></progress>
+          </div>
+          <p id="status" class="status" role="status" aria-live="polite">
+            Gambar diproses di browser Anda.
+          </p>
+          <div id="errorBox" class="error-box" role="alert" hidden>
+            <p id="errorText"></p>
+            <button type="button" id="reloadButton" class="quiet-button" hidden>
+              Muat ulang aplikasi
+            </button>
+          </div>
+        </section>
+
+        <section class="panel result-panel" aria-labelledby="resultHeading">
+          <div class="panel-heading result-heading">
+            <h2 id="resultHeading"><span class="step">2</span> Hasil teks</h2>
+            <span id="resultState" class="result-state">Belum dibaca</span>
+          </div>
+          <label for="output" class="output-label"
+            >Teks hasil OCR, bisa Anda edit</label
+          >
+          <textarea
+            id="output"
+            spellcheck="false"
+            placeholder="Tulisan dari gambar akan muncul di sini. Setelah selesai, Anda bisa memperbaiki hasilnya sebelum disalin atau diunduh."
+            aria-describedby="resultHint"
+          ></textarea>
+          <div class="result-meta">
+            <span id="textCount">0 kata · 0 karakter</span
+            ><span id="confidence" hidden></span>
+          </div>
+          <div class="export-row">
+            <button
+              type="button"
+              id="copyButton"
+              class="primary-button"
+              disabled
+            >
+              Salin teks</button
+            ><button
+              type="button"
+              id="downloadButton"
+              class="quiet-button"
+              disabled
+            >
+              Unduh .txt
+            </button>
+          </div>
+          <p id="resultHint" class="result-hint">
+            OCR paling cocok untuk teks cetak yang jelas. Periksa kembali nama,
+            angka, dan tanda baca.
+          </p>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <p>Satu gambar, satu proses. Tidak perlu akun.</p>
+        <details>
+          <summary>Cara kerja dan privasi</summary>
+          <div class="details-content">
+            <p>
+              Gambar dan hasil teks tetap berada di tab ini. Aplikasi tidak
+              mengunggah gambar ke server OCR dan tidak menyimpan riwayat
+              dokumen.
+            </p>
+            <p>
+              Saat pertama digunakan, browser memuat mesin OCR dan model bahasa
+              dari situs aplikasi ini. Model bahasa dapat tersimpan di cache
+              browser. Hanya pilihan tema yang disimpan sebagai pengaturan.
+            </p>
+            <p>
+              Format yang didukung: PNG, JPG, dan WEBP statis hingga 10 MiB, 16
+              juta piksel, dan sisi terpanjang 8.000 piksel. Gambar besar
+              diperkecil untuk pembacaan. PDF, HEIC, GIF, dan gambar animasi
+              belum didukung.
+            </p>
+            <p>
+              Jika dibatalkan saat mesin pertama dimuat, pembersihan worker bisa
+              menunggu unduhan yang sedang berjalan selesai. Hasil pembacaan
+              yang dibatalkan tidak akan mengganti teks Anda.
+            </p>
+          </div>
+        </details>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

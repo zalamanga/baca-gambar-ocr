@@ -1,0 +1,114 @@
+name: Verify OCR and deploy Pages
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - README.md
+      - docs/**
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: baca-gambar-ocr-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          check-latest: true
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: '3.13'
+
+      - name: Install locked dependencies
+        run: |
+          mkdir -p .local
+          npm ci --no-audit --no-fund
+
+      - name: Run unit tests
+        run: npm test | tee .local/unit-test.log
+
+      - name: Build local OCR assets and the app
+        run: npm run build | tee .local/build.log
+
+      - name: Install Chromium for real OCR checks
+        run: npx --no-install playwright install --with-deps chromium
+
+      - name: Run browser tests and capture screenshots
+        id: browser
+        run: npm run test:browser | tee .local/browser-check.log
+
+      - name: Save verification reports
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: ocr-verification
+          path: |
+            .local/unit-test.log
+            .local/build.log
+            .local/browser-check.log
+            .local/browser-results.json
+            .local/playwright-results/
+            .local/playwright-report/
+            public/ocr/asset-manifest.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Save screenshots from the successful browser run
+        if: success() && steps.browser.outcome == 'success'
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: ocr-screenshots
+          path: docs/screenshots/*.png
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload the verified build for Pages
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: dist
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6.0.0
+
+      - name: Deploy the verified build
+        id: deployment
+        uses: actions/deploy-pages@v5.0.1

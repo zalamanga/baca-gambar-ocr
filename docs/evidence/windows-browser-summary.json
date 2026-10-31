@@ -1,0 +1,41 @@
+{
+  "result": "PASS",
+  "browser": "Microsoft Edge via Playwright Chromium driver",
+  "testsPassed": 13,
+  "skipped": 0,
+  "failed": 0,
+  "durationSeconds": 64.63,
+  "privacyProofs": 13,
+  "httpRequests": 127,
+  "nonGetHead": 0,
+  "thirdParty": 0,
+  "pageErrors": 0,
+  "modelResponses": [
+    {
+      "url": "http://127.0.0.1:8124/ocr/lang/ind.traineddata",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8124/ocr/lang/eng.traineddata",
+      "status": 200
+    }
+  ],
+  "intentionalFailedWorkerRequests": 1,
+  "screenshots": [
+    {
+      "file": "01-receipt-light.png",
+      "bytes": 81700,
+      "sha256": "8833c36df99490b5beb4e4956ed4868f9567931b8b14ad3bbd36de5fe19e8e54"
+    },
+    {
+      "file": "02-english-dark.png",
+      "bytes": 92677,
+      "sha256": "2baddc7ed06a42e3e04c9957cace92bc5caa1bf05d39f6cf0965139b57e6a01f"
+    },
+    {
+      "file": "03-receipt-mobile.png",
+      "bytes": 71414,
+      "sha256": "e839c55945af10b8ca8336389b424c6d79c6ff1062102cf5b352b346956a282a"
+    }
+  ]
+}
